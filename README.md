@@ -4,6 +4,10 @@ Implementation of Neural Style Transfer from the paper [A Neural Algorithm of Ar
 
 ### Requirements
 
+* tensorflow-gpu==1.4.0
+* tqdm==4.23.0
+* scikit-image==0.13.1
+
 ### Usage
 
 ### Example
@@ -18,6 +22,10 @@ Implementation of Neural Style Transfer from the paper [A Neural Algorithm of Ar
 用Tensorflow实现神经风格迁移， 论文：[A Neural Algorithm of Artistic Style](http://arxiv.org/abs/1508.06576)
 
 ### 环境要求
+
+* tensorflow-gpu==1.4.0
+* tqdm==4.23.0
+* scikit-image==0.13.1
 
 ### 使用方法
 
