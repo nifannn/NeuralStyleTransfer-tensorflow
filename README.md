@@ -11,6 +11,7 @@ Implementation of Neural Style Transfer from the paper [A Neural Algorithm of Ar
 ### References
 
 * [A Neural Algorithm of Artistic Style](http://arxiv.org/abs/1508.06576)
+* [Convolutional Neural Networks by deeplearning.ai](https://www.coursera.org/learn/convolutional-neural-networks)
 
 ## Tensorflow神经风格迁移
 
@@ -25,3 +26,4 @@ Implementation of Neural Style Transfer from the paper [A Neural Algorithm of Ar
 ### 参考
 
 * [A Neural Algorithm of Artistic Style](http://arxiv.org/abs/1508.06576)
+* [deeplearning.ai 卷积神经网络](https://www.coursera.org/learn/convolutional-neural-networks)
