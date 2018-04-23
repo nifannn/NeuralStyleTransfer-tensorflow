@@ -8,7 +8,13 @@ from vgg import pretrainedVGG19
 from default_config import *
 
 class NeuralStyleTransfer(object):
-	"""Neural Style Transfer with VGG-19."""
+	"""Neural Style Transfer with VGG-19.
+
+	Args:
+
+	Attributes:
+
+	"""
 	def __init__(self, content_img, style_img, model_graph, sess,
 				 width=DEFAULT_WIDTH, height=DEFAULT_HEIGHT, channels=DEFAULT_CHANNELS,
 				 alpha=DEFAULT_ALPHA, beta=DEFAULT_BETA,
@@ -29,6 +35,11 @@ class NeuralStyleTransfer(object):
 
 	def _reshape_and_normalize_img(self, image):
 		"""
+
+		Args:
+
+		Returns:
+
 		"""
 		image = skimage.transform.resize(image, (self.height, self.width, self.channels), mode='reflect', preserve_range=True)
 		image = np.reshape(image, (1, self.height, self.width, self.channels))
@@ -37,6 +48,7 @@ class NeuralStyleTransfer(object):
 
 	def _generate_noise_img(self):
 		"""
+		Returns:
 		"""
 		noise_img = np.random.uniform(-20, 20, (1, self.height, self.width, self.channels)).astype('float32')
 		generated_img = noise_img * NOISE_RATIO + self._content * (1 - NOISE_RATIO)
@@ -60,6 +72,7 @@ class NeuralStyleTransfer(object):
 	
 	def _get_conv_feature(self, image, layer_name):
 		"""
+
 		"""
 		self.sess.run(self.graph['input'].assign(image))
 		features = self.sess.run(self.graph[layer_name])
@@ -109,6 +122,10 @@ class NeuralStyleTransfer(object):
 
 	def _get_train_op(self, cost):
 		"""
+		Get training op.
+
+		Returns:
+			train_op: op of training
 		"""
 		optimizer = tf.train.AdamOptimizer(self.lr)
 		train_op = optimizer.minimize(cost)
@@ -116,6 +133,7 @@ class NeuralStyleTransfer(object):
 
 	def prepare_training(self):
 		"""
+		Preparation work before training. Get important ops and initialize variables.
 		"""
 		self.cost, self.content_cost, self.style_cost = self._get_cost_op()
 		self.train_op = self._get_train_op(self.cost)
@@ -124,6 +142,12 @@ class NeuralStyleTransfer(object):
 
 	def train_step(self):
 		"""
+		Train one step, updating generated image.
+
+		Returns:
+			t_cost: float, total cost
+			c_cost: float, content cost
+			s_cost: float, style cost
 		"""
 		self.sess.run(self.train_op)
 		self.generated_img = self.sess.run(self.graph['input'])
@@ -132,6 +156,10 @@ class NeuralStyleTransfer(object):
 
 	def save_generated_img(self, path):
 		"""
+		Save generated image.
+
+		Args:
+			path: str, path to save image
 		"""
 		image = self.generated_img + VGG_MEANS
 		image = np.clip(image[0], 0, 255).astype('uint8')
@@ -176,14 +204,24 @@ def run_nst(content_img, style_img, output_folder=DEFAULT_OUTPUT_FOLDER,
 		output_name=DEFAULT_OUTPUT_NAME, alpha=DEFAULT_ALPHA, beta=DEFAULT_BETA,
 		cl=DEFAULT_CONTENT_LAYER, sl=DEFAULT_STYLE_LAYERS):
 	"""
-	Neural Style Transfer based on VGG-19.
+	Run Neural Style Transfer based on VGG-19.
 
-	Parameters:
+	Args:
 		content_img: str, path to content image
 		style_img: str, path to style image
 		output_folder: str, path to output folder
 		n_iterations: int, number of iterations
 		save_every_n_iterations: int, number of iterations the model will save a output image
+		height:
+		width:
+		channels:
+		pretrained_model:
+		learning_rate:
+		output_name:
+		alpha:
+		beta:
+		cl:
+		sl:
 	"""
 	vgg = pretrainedVGG19(height, width, channels)
 	vgg.load_weights(pretrained_model)
