@@ -212,16 +212,16 @@ def run_nst(content_img, style_img, output_folder=DEFAULT_OUTPUT_FOLDER,
 		output_folder: str, path to output folder
 		n_iterations: int, number of iterations
 		save_every_n_iterations: int, number of iterations the model will save a output image
-		height:
-		width:
-		channels:
-		pretrained_model:
-		learning_rate:
-		output_name:
-		alpha:
-		beta:
-		cl:
-		sl:
+		height: int, height of image
+		width: int, width of image
+		channels: int, number of image channels
+		pretrained_model: str, path to pretrained model
+		learning_rate: float, learning rate
+		output_name: str, name of output image
+		alpha: float, importance of content cost
+		beta: float, importance of style cost
+		cl: str, name of layer used to compute content cost 
+		sl: dict, {layer_name : coeff}, coefficient and layer name used to compute style cost
 	"""
 	vgg = pretrainedVGG19(height, width, channels)
 	vgg.load_weights(pretrained_model)
