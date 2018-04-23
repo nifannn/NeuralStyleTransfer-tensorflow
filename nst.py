@@ -39,6 +39,10 @@ class NeuralStyleTransfer(object):
 		cost: tensor representing total cost
 		content_cost: tensor representing content cost
 		style_cost: tensor representing style cost
+		_content: numpy array, processed content image
+		_content_feature: numpy array, extracted content features
+		_style: numpy array, processed style image
+		_style_features: dict, {layer_name : numpy array}, extraced style features
 	"""
 	def __init__(self, content_img, style_img, model_graph, sess,
 				 width=DEFAULT_WIDTH, height=DEFAULT_HEIGHT, channels=DEFAULT_CHANNELS,

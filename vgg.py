@@ -6,7 +6,13 @@ class pretrainedVGG19(object):
 	"""Pretrained VGG 19 for Neural Style Transfer.
 
 	Args:
+		height: int, height of input image
+		width: int, width of input image
+		channels: int, number of input image channels
+
 	Attributes:
+		graph: dict, {layer_name : tensor}, representing tensorflow graph of VGG19
+		vgg_layers: numpy array, loaded pretrained model parameters
 	"""
 	def __init__(self, height, width, channels):
 		self.graph = {}
@@ -14,6 +20,15 @@ class pretrainedVGG19(object):
 
 	def _get_layer_weights(self, layer, layer_name):
 		"""
+		Get weights of specific layer.
+
+		Args:
+			layer: int, index of layer
+			layer_name: str, name of layer
+
+		Returns:
+			W: weights, numpy array
+			b: bias, numpy array
 		"""
 		params = self.vgg_layers[0][layer][0][0][2][0]
 		W = params[0]
@@ -25,6 +40,15 @@ class pretrainedVGG19(object):
 	
 	def _conv2d(self, prev_layer, layer, layer_name):
 		"""
+		Create convolutional layer.
+
+		Args:
+			prev_layer: tensor representing output of previous layer
+			layer: int, index of layer
+			layer_name: str, name of layer
+
+		Returns:
+			tensor representing output of current convolutional layer
 		"""
 		W, b = self._get_layer_weights(layer, layer_name)
 		W = tf.constant(W)
@@ -33,21 +57,48 @@ class pretrainedVGG19(object):
 
 	def _relu(self, layer):
 		"""
+		Add relu.
+
+		Args:
+			layer: tensor to input relu
+
+		Returns:
+			output tensor of relu 
 		"""
 		return tf.nn.relu(layer)
 	
 	def _conv2d_relu(self, prev_layer, layer, layer_name):
 		"""
+		Create convolution --> relu layer.
+
+		Args:
+			prev_layer: tensor representing output of previous layer
+			layer: int, index of layer
+			layer_name: str, name of layer
+
+		Returns:
+			tensor representing output of current layer
 		"""
 		return self._relu(self._conv2d(prev_layer, layer, layer_name))
 	
 	def _avgpool(self, layer):
 		"""
+		Add average pooling layer.
+
+		Args:
+			layer: tensor to input
+
+		Returns:
+			output tensor
 		"""
 		return tf.nn.avg_pool(layer, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 	
 	def load_weights(self, path):
 		"""
+		Load pretrained model parameters and create model graph.
+
+		Args:
+			path: str, path to pretrained model
 		"""
 		self.vgg_layers = scipy.io.loadmat(path)['layers']
 		self.graph['conv1_1'] = self._conv2d_relu(self.graph['input'], 0, 'conv1_1')
