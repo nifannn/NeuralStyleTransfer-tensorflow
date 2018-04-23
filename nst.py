@@ -11,9 +11,34 @@ class NeuralStyleTransfer(object):
 	"""Neural Style Transfer with VGG-19.
 
 	Args:
+		content_img: str, path to content image
+		style_img: str, path to style image
+		model_graph: dict, {layer_name : tensor}, representing pretrained vgg model
+		sess: tensorflow.Session
+		width: int, width of image
+		height: int, height of image
+		channels: int, number of image channels
+		alpha: folat, importance of content cost
+		beta: float, importance of style cost
+		cl: str, layer name used to compute content cost
+		sl: dict, {layer_name : coeff} coefficient and layer name used to compute style cost
+		lr: float, learning rate
 
 	Attributes:
-
+		width: int, width of image
+		height: int, heigth of image
+		channels: int, number of image channels
+		graph: dict, {layer_name : tensor}, representing pretrained vgg model
+		sess: tensorflow.Session
+		alpha: float, importance of content cost
+		beta: float, importance of style cost
+		cl: str, name of layer used to compute content cost
+		sl: dict, {layer_name : coeff} coefficient and layer name used to compute style cost
+		lr: float, learning rate
+		generated_img: numpy array representing generated image
+		cost: tensor representing total cost
+		content_cost: tensor representing content cost
+		style_cost: tensor representing style cost
 	"""
 	def __init__(self, content_img, style_img, model_graph, sess,
 				 width=DEFAULT_WIDTH, height=DEFAULT_HEIGHT, channels=DEFAULT_CHANNELS,
