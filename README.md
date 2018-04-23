@@ -16,7 +16,7 @@ Implementation of Neural Style Transfer from the paper [A Neural Algorithm of Ar
 * Command usage: 
 
 ```
-python  nst.py [-h] -c CONTENT_IMG -s STYLE_IMG [-o OUTPUT_FOLDER]
+python nst.py [-h] -c CONTENT_IMG -s STYLE_IMG [-o OUTPUT_FOLDER]
               [-n N_ITERATIONS] [-e SAVE_EVERY_N_ITERATIONS] [-f OUTPUT_NAME]
               [-p PRETRAINED_MODEL] [-a ALPHA] [-b BETA] [-lr LEARNING_RATE]
               [-ht HEIGHT] [-w WIDTH] [-ch CHANNELS]
@@ -128,7 +128,7 @@ python nst.py -c example/cat2.jpg -s example/starry_night/jpg -n 400 -e 100
 * 命令行使用方法: 
 
 ```
-python  nst.py [-h] -c CONTENT_IMG -s STYLE_IMG [-o OUTPUT_FOLDER]
+python nst.py [-h] -c CONTENT_IMG -s STYLE_IMG [-o OUTPUT_FOLDER]
               [-n N_ITERATIONS] [-e SAVE_EVERY_N_ITERATIONS] [-f OUTPUT_NAME]
               [-p PRETRAINED_MODEL] [-a ALPHA] [-b BETA] [-lr LEARNING_RATE]
               [-ht HEIGHT] [-w WIDTH] [-ch CHANNELS]
@@ -166,6 +166,56 @@ python  nst.py [-h] -c CONTENT_IMG -s STYLE_IMG [-o OUTPUT_FOLDER]
 ```
 
 ### 例子 
+
+#### 内容图片:
+
+[example/cat2.jpg](example/cat2.jpg)
+
+![cat2.jpg](example/cat2.jpg)
+
+#### 风格图片: 
+
+[example/starry_night.jpg](example/starry_night.jpg)
+
+![starry_night.jpg](example/starry_night.jpg)
+
+#### 命令行:
+
+```
+python nst.py -c example/cat2.jpg -s example/starry_night/jpg -n 400 -e 100
+```
+
+#### 结果:
+
+* 迭代0次:
+
+[output/generated_0.png](output/generated_0.png)
+
+![generated_0](output/generated_0.png)
+
+* 迭代100次:
+
+[output/generated_100.png](output/generated_100.png)
+
+![generated_100](output/generated_100.png)
+
+* 迭代200次:
+
+[output/generated_200.png](output/generated_200.png)
+
+![generated_200](output/generated_200.png)
+
+* 迭代300次:
+
+[output/generated_300.png](output/generated_300.png)
+
+![generated_300](output/generated_300.png)
+
+* 最终结果 (迭代400次):
+
+[output/generated.jpg](output/generated.jpg)
+
+![generated](output/generated.jpg)
 
 ### 参考
 
