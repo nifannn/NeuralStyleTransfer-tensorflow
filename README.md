@@ -15,11 +15,42 @@ Implementation of Neural Style Transfer from the paper [A Neural Algorithm of Ar
 * Open terminal and type the command
 * Command usage: 
 
-```python
+```
 python  nst.py [-h] -c CONTENT_IMG -s STYLE_IMG [-o OUTPUT_FOLDER]
               [-n N_ITERATIONS] [-e SAVE_EVERY_N_ITERATIONS] [-f OUTPUT_NAME]
               [-p PRETRAINED_MODEL] [-a ALPHA] [-b BETA] [-lr LEARNING_RATE]
               [-ht HEIGHT] [-w WIDTH] [-ch CHANNELS]
+```
+
+* Command arguments:
+
+```
+  -h, --help            show this help message and exit
+  -c CONTENT_IMG, --content_img CONTENT_IMG
+                        path to content image
+  -s STYLE_IMG, --style_img STYLE_IMG
+                        path to style image
+  -o OUTPUT_FOLDER, --output_folder OUTPUT_FOLDER
+                        path to output folder
+  -n N_ITERATIONS, --n_iterations N_ITERATIONS
+                        number of iterations
+  -e SAVE_EVERY_N_ITERATIONS, --save_every_n_iterations SAVE_EVERY_N_ITERATIONS
+                        every n iterations the model will save an output image
+  -f OUTPUT_NAME, --output_name OUTPUT_NAME
+                        output image name
+  -p PRETRAINED_MODEL, --pretrained_model PRETRAINED_MODEL
+                        path to pretraned model
+  -a ALPHA, --alpha ALPHA
+                        importance of content cost
+  -b BETA, --beta BETA  importance of style cost
+  -lr LEARNING_RATE, --learning_rate LEARNING_RATE
+                        learning rate
+  -ht HEIGHT, --height HEIGHT
+                        height of image
+  -w WIDTH, --width WIDTH
+                        width of image
+  -ch CHANNELS, --channels CHANNELS
+                        channels of image
 ```
 
 ### Example
