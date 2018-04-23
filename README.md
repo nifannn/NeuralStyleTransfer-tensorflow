@@ -77,13 +77,33 @@ python nst.py -c example/cat2.jpg -s example/starry_night/jpg -n 400 -e 100
 
 * Iteration 0:
 
+[output/generated_0.png](output/generated_0.png)
+
+![generated_0](output/generated_0.png)
+
 * Iteration 100:
+
+[output/generated_100.png](output/generated_100.png)
+
+![generated_100](output/generated_100.png)
 
 * Iteration 200:
 
+[output/generated_200.png](output/generated_200.png)
+
+![generated_200](output/generated_200.png)
+
 * Iteration 300:
 
+[output/generated_300.png](output/generated_300.png)
+
+![generated_300](output/generated_300.png)
+
 * Final (Iteration 400):
+
+[output/generated.jpg](output/generated.jpg)
+
+![generated](output/generated.jpg)
 
 ### References
 
