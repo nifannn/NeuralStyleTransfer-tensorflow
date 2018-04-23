@@ -55,6 +55,14 @@ python  nst.py [-h] -c CONTENT_IMG -s STYLE_IMG [-o OUTPUT_FOLDER]
 
 ### Example
 
+* Content image: [example/cat2.jpg](example/cat2.jpg)
+* Style image: [example/starry_night.jpg](example/starry_night.jpg)
+* Command line:
+```
+python nst.py -c example/cat2.jpg -s example/starry_night/jpg -n 400 -e 100
+```
+* Result:
+
 ### References
 
 * [A Neural Algorithm of Artistic Style](http://arxiv.org/abs/1508.06576)
