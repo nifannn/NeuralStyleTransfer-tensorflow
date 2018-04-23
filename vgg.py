@@ -3,7 +3,10 @@ import numpy as np
 import scipy.io
 
 class pretrainedVGG19(object):
-	"""pretrained VGG 19 for Neural Style Transfer
+	"""Pretrained VGG 19 for Neural Style Transfer.
+
+	Args:
+	Attributes:
 	"""
 	def __init__(self, height, width, channels):
 		self.graph = {}

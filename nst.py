@@ -35,11 +35,13 @@ class NeuralStyleTransfer(object):
 
 	def _reshape_and_normalize_img(self, image):
 		"""
+		Reshape and normalize image.
 
 		Args:
+			image: array of image
 
 		Returns:
-
+			image: processed image
 		"""
 		image = skimage.transform.resize(image, (self.height, self.width, self.channels), mode='reflect', preserve_range=True)
 		image = np.reshape(image, (1, self.height, self.width, self.channels))
@@ -48,7 +50,10 @@ class NeuralStyleTransfer(object):
 
 	def _generate_noise_img(self):
 		"""
+		Generate noise image.
+
 		Returns:
+			generated_img: array of generated noise image, (1, height, width, channels)
 		"""
 		noise_img = np.random.uniform(-20, 20, (1, self.height, self.width, self.channels)).astype('float32')
 		generated_img = noise_img * NOISE_RATIO + self._content * (1 - NOISE_RATIO)
@@ -56,6 +61,10 @@ class NeuralStyleTransfer(object):
 
 	def _set_content_img(self, content_img):
 		"""
+		Read, reshape, normalize content image and extract convolutional features.
+
+		Args:
+			content_img: str, path to content image
 		"""
 		content_image = skimage.io.imread(content_img)
 		self._content = self._reshape_and_normalize_img(content_image)
@@ -63,6 +72,10 @@ class NeuralStyleTransfer(object):
 
 	def _set_style_img(self, style_img):
 		"""
+		Read, reshape, normalize style image and extract convolutional features.
+
+		Args:
+			style_img: str, path to style image
 		"""
 		style_image = skimage.io.imread(style_img)
 		self._style = self._reshape_and_normalize_img(style_image)
@@ -72,7 +85,14 @@ class NeuralStyleTransfer(object):
 	
 	def _get_conv_feature(self, image, layer_name):
 		"""
+		Input an image and get convolutional features of some layer
 
+		Args:
+			image: array of image, (height, width, channels)
+			layer_name: str, name of layer used to extract features
+
+		Returns:
+			features: array of extracted features
 		"""
 		self.sess.run(self.graph['input'].assign(image))
 		features = self.sess.run(self.graph[layer_name])
@@ -80,6 +100,10 @@ class NeuralStyleTransfer(object):
 
 	def _get_content_cost(self):
 		"""
+		Get content cost.
+
+		Returns:
+			content_cost: tensor representing content cost
 		"""
 		m, H, W, C = self.graph[self.cl].get_shape().as_list()
 		a_C_unrolled = tf.transpose(tf.reshape(self._content_feature, [m, H * W, C]), perm=[0,2,1])
@@ -89,11 +113,25 @@ class NeuralStyleTransfer(object):
 
 	def _get_gram_matrix(self, A):
 		"""
+		Get gram matrix.
+
+		Args:
+			A: matrix
+
+		Returns:
+			gram matrix
 		"""
 		return tf.matmul(A, tf.transpose(A))
 
 	def _get_layer_style_cost(self, layer_name):
 		"""
+		Get style cost of specific layer.
+
+		Args:
+			layer_name: str, name of specific layer
+
+		Returns:
+			layer_style_cost: tensor representing style cost of one layer
 		"""
 		m, H, W, C = self.graph[layer_name].get_shape().as_list()
 		a_S = tf.transpose(tf.reshape(self._style_features[layer_name], [H * W, C]))
@@ -105,6 +143,10 @@ class NeuralStyleTransfer(object):
 
 	def _get_style_cost(self):
 		"""
+		Get style cost.
+
+		Returns:
+			style_cost: tensor representing style cost
 		"""
 		style_cost = 0
 		for layer_name, coeff in self.sl.items():
@@ -114,6 +156,12 @@ class NeuralStyleTransfer(object):
 
 	def _get_cost_op(self):
 		"""
+		Get cost tensor.
+
+		Returns:
+			cost: tensor representing total cost
+			content_cost: tensor representing content cost
+			style_cost: tensor representing style cost
 		"""
 		content_cost = self._get_content_cost()
 		style_cost = self._get_style_cost()
