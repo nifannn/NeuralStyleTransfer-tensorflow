@@ -10,8 +10,8 @@ Implementation of Neural Style Transfer from the paper [A Neural Algorithm of Ar
 
 ### Usage
 
-* Create folder named pretrained_model
-* Download [pretrained VGG 19](http://www.vlfeat.org/matconvnet/models/imagenet-vgg-verydeep-19.mat) and put it into pretrained_model
+* Create folder named `pretrained_model`
+* Download [pretrained VGG 19](http://www.vlfeat.org/matconvnet/models/imagenet-vgg-verydeep-19.mat) and put it into `pretrained_model` folder
 * Open terminal and type the command
 * Command usage: 
 
