@@ -70,7 +70,7 @@ python nst.py [-h] -c CONTENT_IMG -s STYLE_IMG [-o OUTPUT_FOLDER]
 #### Command line:
 
 ```
-python nst.py -c example/cat2.jpg -s example/starry_night/jpg -n 400 -e 100
+python nst.py -c example/cat2.jpg -s example/starry_night.jpg -n 400 -e 100
 ```
 
 #### Result:
@@ -182,7 +182,7 @@ python nst.py [-h] -c CONTENT_IMG -s STYLE_IMG [-o OUTPUT_FOLDER]
 #### 命令行:
 
 ```
-python nst.py -c example/cat2.jpg -s example/starry_night/jpg -n 400 -e 100
+python nst.py -c example/cat2.jpg -s example/starry_night.jpg -n 400 -e 100
 ```
 
 #### 结果:
